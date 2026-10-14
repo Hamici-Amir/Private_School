@@ -1,0 +1,292 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Design Tokens
+   ------------------------------------------------------------
+   Every decision (color, typography, radius, shadow, transition,
+   breakpoint, z-index) is centralized here so the whole surface
+   can be re-branded from one file. Utilities are generated from
+   these tokens by Tailwind CSS v4.
+   ============================================================ */
+
+@theme inline {
+  /* Semantic surfaces */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Brand & interaction */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Semantic status colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-foreground: var(--info-soft-foreground);
+
+  /* Boundaries */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius scale (professional, not playful) */
+  --radius-xs: calc(var(--radius) - 6px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Shadow hierarchy (subtle by default) */
+  --shadow-subtle: 0 1px 2px 0 rgb(10 15 30 / 0.04);
+  --shadow-card: 0 1px 2px 0 rgb(10 15 30 / 0.05), 0 1px 3px 0 rgb(10 15 30 / 0.04);
+  --shadow-dropdown: 0 6px 24px -4px rgb(10 15 30 / 0.12), 0 2px 8px -2px rgb(10 15 30 / 0.06);
+  --shadow-dialog: 0 16px 48px -8px rgb(10 15 30 / 0.18), 0 4px 16px -4px rgb(10 15 30 / 0.08);
+
+  /* Type scale (semantic, responsive-aware) */
+  --text-display: 2rem;
+  --text-display--line-height: 2.25rem;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: 0;
+  --text-h1: 1.5rem;
+  --text-h1--line-height: 2rem;
+  --text-h1--font-weight: 700;
+  --text-h1--letter-spacing: 0;
+  --text-h2: 1.25rem;
+  --text-h2--line-height: 1.75rem;
+  --text-h2--font-weight: 600;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.625rem;
+  --text-h3--font-weight: 600;
+  --text-h4: 1rem;
+  --text-h4--line-height: 1.5rem;
+  --text-h4--font-weight: 600;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.625rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.4rem;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.25rem;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.25rem;
+  --text-label--font-weight: 500;
+  --text-button: 0.875rem;
+  --text-button--line-height: 1.25rem;
+  --text-button--font-weight: 500;
+  --text-table: 0.8125rem;
+  --text-table--line-height: 1.25rem;
+  --text-input: 0.875rem;
+  --text-input--line-height: 1.25rem;
+
+  /* Font stacks (Arabic-first fallback: Segoe UI / Noto Sans Arabic / Tahoma) */
+  --font-sans:
+    'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, 'Noto Sans Arabic', Tahoma,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-mono: 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/*
+  Color values -------------------------------------------------
+  Light and dark palettes. The brand primary is a deep, calm
+  institutional blue communicating trust and education.
+*/
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0.985 0.002 250);
+  --foreground: oklch(0.22 0.015 258);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.015 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.015 258);
+
+  --primary: oklch(0.47 0.13 258);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.955 0.006 256);
+  --secondary-foreground: oklch(0.3 0.03 258);
+  --muted: oklch(0.95 0.004 254);
+  --muted-foreground: oklch(0.5 0.015 260);
+  --accent: oklch(0.943 0.008 255);
+  --accent-foreground: oklch(0.28 0.03 258);
+
+  --destructive: oklch(0.55 0.2 26);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --success: oklch(0.55 0.13 155);
+  --success-foreground: oklch(0.985 0.005 155);
+  --success-soft: oklch(0.95 0.03 155);
+  --success-soft-foreground: oklch(0.35 0.09 155);
+  --warning: oklch(0.6 0.14 72);
+  --warning-foreground: oklch(0.985 0.005 72);
+  --warning-soft: oklch(0.955 0.035 85);
+  --warning-soft-foreground: oklch(0.4 0.09 70);
+  --info: oklch(0.56 0.11 240);
+  --info-foreground: oklch(0.985 0.005 240);
+  --info-soft: oklch(0.95 0.02 240);
+  --info-soft-foreground: oklch(0.33 0.07 240);
+
+  --border: oklch(0.905 0.006 256);
+  --input: oklch(0.875 0.008 256);
+  --ring: oklch(0.5 0.12 258);
+
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-dropdown: 300;
+  --z-popover: 400;
+  --z-overlay: 500;
+  --z-modal: 600;
+  --z-toast: 700;
+  --z-tooltip: 800;
+}
+
+.dark {
+  --background: oklch(0.17 0.008 258);
+  --foreground: oklch(0.95 0.005 250);
+  --card: oklch(0.21 0.008 258);
+  --card-foreground: oklch(0.95 0.005 250);
+  --popover: oklch(0.24 0.01 258);
+  --popover-foreground: oklch(0.95 0.005 250);
+
+  --primary: oklch(0.62 0.1 255);
+  --primary-foreground: oklch(0.17 0.025 255);
+  --secondary: oklch(0.27 0.012 256);
+  --secondary-foreground: oklch(0.95 0.005 250);
+  --muted: oklch(0.27 0.01 256);
+  --muted-foreground: oklch(0.72 0.012 256);
+  --accent: oklch(0.3 0.015 258);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.66 0.19 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --success: oklch(0.68 0.13 155);
+  --success-foreground: oklch(0.16 0.03 155);
+  --success-soft: oklch(0.28 0.06 155);
+  --success-soft-foreground: oklch(0.83 0.07 155);
+  --warning: oklch(0.75 0.12 72);
+  --warning-foreground: oklch(0.16 0.02 60);
+  --warning-soft: oklch(0.3 0.06 80);
+  --warning-soft-foreground: oklch(0.87 0.06 80);
+  --info: oklch(0.7 0.1 240);
+  --info-foreground: oklch(0.16 0.03 240);
+  --info-soft: oklch(0.28 0.05 240);
+  --info-soft-foreground: oklch(0.83 0.07 240);
+
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.62 0.1 255);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: none !important;
+  }
+
+  /* Semantic headings */
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    font-weight: var(--text-h1--font-weight);
+    letter-spacing: var(--text-h1--letter-spacing);
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    font-weight: var(--text-h2--font-weight);
+  }
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    font-weight: var(--text-h3--font-weight);
+  }
+  h4 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    font-weight: var(--text-h4--font-weight);
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Switch thumbs travel in the reading direction (RTL aware). */
+  [dir='rtl'] [data-slot='switch-thumb'] {
+    --tw-translate-x: calc(var(--tw-translate-x, 0px) * -1);
+  }
+
+  /* Progress fills from the reading-direction start (RTL aware). */
+  [dir='rtl'] [data-slot='progress-indicator'] {
+    transform: translateX(var(--progress-offset));
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  header,
+  aside,
+  nav {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+}

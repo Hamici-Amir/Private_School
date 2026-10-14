@@ -1,0 +1,5 @@
+export * from './dashboard'
+export * from './students'
+export * from './parents'
+export * from './teachers'
+export * from './classes'

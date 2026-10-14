@@ -1,0 +1,8 @@
+export type DocumentEntityType = 'student' | 'parent' | 'teacher' | 'enrollment' | 'school' | 'finance' | 'other'
+export type DocumentStatus = 'active' | 'archived' | 'deleted'
+export type DocumentFileType = 'pdf' | 'doc' | 'docx' | 'xls' | 'xlsx' | 'ppt' | 'pptx' | 'jpg' | 'jpeg' | 'png' | 'webp' | 'other'
+export interface DocumentCategory { id: string; nameAr: string; nameFr: string; nameEn: string; isActive: boolean; description: string; createdAt: string; updatedAt: string }
+export interface SchoolDocument { id: string; name: string; originalName: string; categoryId: string; categoryName: string; type: string; entityType: DocumentEntityType; entityId: string; entityName: string; fileName: string; fileExtension: DocumentFileType; mimeType: string; fileSize: number; fileUrl: string; uploadedBy: string; uploadedAt: string; updatedAt: string; description: string; status: DocumentStatus; version: number; isRequired: boolean; tags: string[]; notes: string }
+export interface DocumentFormValues { name: string; categoryId: string; type: string; entityType: DocumentEntityType; entityId: string; description: string; isRequired: boolean; tags: string; notes: string; fileName: string; fileExtension: DocumentFileType; mimeType: string; fileSize: number; fileUrl: string }
+export interface DocumentFilters { categoryId: string; type: string; entityType: DocumentEntityType | 'all'; status: DocumentStatus | 'all'; fileExtension: DocumentFileType | 'all'; uploadedBy: string; date: string }
+export type DocumentSortKey = 'nameAsc' | 'nameDesc' | 'dateDesc' | 'dateAsc' | 'sizeDesc' | 'sizeAsc' | 'categoryAsc' | 'typeAsc' | 'statusAsc'

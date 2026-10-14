@@ -1,0 +1,2 @@
+import { z } from 'zod'
+export const expenseSchema = z.object({ categoryId: z.string().min(1, 'required'), description: z.string().trim().min(1, 'required'), amount: z.number().positive('invalidAmount'), paymentMethod: z.enum(['cash', 'bank-transfer', 'card', 'other']), date: z.string().min(1, 'required'), supplier: z.string(), status: z.enum(['paid', 'pending', 'cancelled']), notes: z.string() })

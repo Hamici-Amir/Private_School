@@ -1,0 +1,2 @@
+import { z } from 'zod'
+export const subjectSchema = z.object({ code: z.string().trim().min(2, 'required').max(10, 'codeTooLong'), name: z.string().trim().min(1, 'required'), nameFr: z.string().trim().min(1, 'required'), nameAr: z.string().trim().min(1, 'required'), description: z.string().max(500, 'descriptionTooLong'), levels: z.array(z.string()).min(1, 'levelRequired'), teacherIds: z.array(z.string()), status: z.enum(['active', 'inactive']) })

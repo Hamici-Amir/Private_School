@@ -1,0 +1,13 @@
+import type { TranslationKey } from '@/lib/i18n'
+import type { DocumentEntityType, DocumentFileType, DocumentSortKey, DocumentStatus } from '../types/documents.types'
+export const DOCUMENT_CATEGORIES = [{ id: 'student', nameAr: 'وثائق التلاميذ', nameFr: 'Documents élèves', nameEn: 'Student Documents' }, { id: 'parent', nameAr: 'وثائق الأولياء', nameFr: 'Documents parents', nameEn: 'Parent Documents' }, { id: 'teacher', nameAr: 'وثائق الأساتذة', nameFr: 'Documents enseignants', nameEn: 'Teacher Documents' }, { id: 'enrollment', nameAr: 'وثائق التسجيل', nameFr: 'Documents d’inscription', nameEn: 'Enrollment Documents' }, { id: 'school', nameAr: 'وثائق المؤسسة', nameFr: 'Documents de l’établissement', nameEn: 'School Documents' }, { id: 'finance', nameAr: 'وثائق مالية', nameFr: 'Documents financiers', nameEn: 'Financial Documents' }, { id: 'other', nameAr: 'أخرى', nameFr: 'Autres', nameEn: 'Other' }] as const
+export const DOCUMENT_TYPES = ['birthCertificate', 'identity', 'schoolCertificate', 'medicalCertificate', 'authorization', 'diploma', 'contract', 'registrationForm', 'transferCertificate', 'administrative', 'invoice', 'receipt', 'other'] as const
+export const DOCUMENT_FILE_TYPES: DocumentFileType[] = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'webp', 'other']
+export const DOCUMENT_ENTITY_TYPES: DocumentEntityType[] = ['student', 'parent', 'teacher', 'enrollment', 'school', 'finance', 'other']
+export const DOCUMENT_STATUSES: DocumentStatus[] = ['active', 'archived', 'deleted']
+export const DOCUMENT_SORT_OPTIONS: DocumentSortKey[] = ['nameAsc', 'nameDesc', 'dateDesc', 'dateAsc', 'sizeDesc', 'sizeAsc', 'categoryAsc', 'typeAsc', 'statusAsc']
+export const DOCUMENT_CATEGORY_LABELS: Record<string, TranslationKey> = Object.fromEntries(DOCUMENT_CATEGORIES.map((category) => [category.id, `documents.categories.${category.id}`])) as Record<string, TranslationKey>
+export const DOCUMENT_TYPE_LABELS: Record<string, TranslationKey> = Object.fromEntries(DOCUMENT_TYPES.map((type) => [type, `documents.types.${type}`])) as Record<string, TranslationKey>
+export const DOCUMENT_ENTITY_LABELS: Record<DocumentEntityType, TranslationKey> = { student: 'documents.entities.student', parent: 'documents.entities.parent', teacher: 'documents.entities.teacher', enrollment: 'documents.entities.enrollment', school: 'documents.entities.school', finance: 'documents.entities.finance', other: 'documents.entities.other' }
+export const DOCUMENT_STATUS_LABELS: Record<DocumentStatus, TranslationKey> = { active: 'documents.status.active', archived: 'documents.status.archived', deleted: 'documents.status.deleted' }
+export const DEFAULT_DOCUMENT_PAGE_SIZE = 15
